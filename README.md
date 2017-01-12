@@ -1,7 +1,7 @@
 ##Cache 实验说明##
 **实验目的：实现一个二路组相连Cache，同时Instruction Cache 与Data Cache相分离，大体结构如下：**
 
-![cache框架](https://github.com/Paraoia/CS-Cache/tree/master/pic/cache框架.png)
+![cache框架](https://github.com/Paraoia/CS-Cache/blob/master/pic/cache%E6%A1%86%E6%9E%B6.png)
 
 **框架解释：**
 Cache内部分成两个Cache，即Data Cache与Instruction Cache，两者的访问与交互通过Cache Control进行控制，整体通过最顶层的接口Cache Interface与CPU以及内存DDR进行交互。Instruction Cache除了从内存DDR读入指令，也可以从Data Cache读入指令，因为本身实验结构（不是Cache本身特点）造成的***Data Cache存在指令残留问题*** *（在后面说明了该问题原因）*
@@ -28,7 +28,7 @@ Cache可以实现为数据指令分离式也可以实现为合并式，那选择
 >b、对Instruction Cache提供一个接口，使得Instruction Cache先读Data Cache，如果Data Cache出现miss的情况，再读DDR2相应的地址。实现算不麻烦，因此，我们此次实验中采取了这个方案，也因此有了从Data Cache连接到Instruction Cache的一根线。
 
 
-![流水线CPU总框架.png](https://github.com/Paraoia/CS-Cache/tree/master/pic/流水线CPU总框架.png)
+![流水线CPU总框架.png](https://github.com/Paraoia/CS-Cache/blob/master/pic/%E6%B5%81%E6%B0%B4%E7%BA%BFCPU%E6%80%BB%E6%A1%86%E6%9E%B6.png)
 
 
 
@@ -39,4 +39,8 @@ Cache可以实现为数据指令分离式也可以实现为合并式，那选择
 
 	http://pages.cs.wisc.edu/~david/courses/cs552/S12/includes/cache-mod.html
 
-上述讲义为学生提供了设计一个直接映射的cache的基本示例，可以参考该设计风格进行设计。
+上述讲义为学生提供了设计一个直接映射的Cache的基本示例，可以参考该设计风格进行设计。最开始的Cache是根据这个讲义的直接映射Cache进行改装实现的，Data Cache与Instruction Cache底层均是相同的，实例化了这个讲义修改之后的Cache。
+
+
+2、这里代码实现的Cache是参考了部分上述讲义，自己设计的Cache结构。并在最开始自己设计的基础上重构进行实现的，重构的过程以及考虑的部分在doc文件夹中进行描述。
+
